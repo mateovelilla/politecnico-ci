@@ -1,0 +1,27 @@
+name: rust-postgres
+services:
+  db:
+    container_name: db
+    image: postgres:12-alpine
+    restart: always
+    hostname: db
+    environment:
+      - POSTGRES_USER=poli
+      - POSTGRES_PASSWORD=poli453
+      - POSTGRES_HOST=db
+    networks:
+      - server-side
+    ports:
+      - 5420:5432
+  backend:
+    container_name: backend
+    image: francescoxx/rustapp:1.0.0
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    networks:
+      - server-side
+networks:
+  server-side: {}
