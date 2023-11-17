@@ -1,3 +1,4 @@
+\c poli
 create table STUDENTS(
 	id serial not null primary KEY,
 	first_name VARCHAR(50) not null,

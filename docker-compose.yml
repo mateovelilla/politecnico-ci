@@ -13,6 +13,8 @@ services:
       - server-side
     ports:
       - 5420:5432
+    volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
   backend:
     container_name: backend
     image: francescoxx/rustapp:1.0.0
