@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stages("build") {
+        stage("build") {
             steps {
                 echo 'Building api...'
                 sh 'cd api';
