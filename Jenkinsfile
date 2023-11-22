@@ -5,8 +5,8 @@ pipeline {
     }
   }
   stages {
-    stage('Deploy') {
-      sh 'docker compose up'
+    stage('Build front-end') {
+      sh 'npm install'
     }
   }
 }
