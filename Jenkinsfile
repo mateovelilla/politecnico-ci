@@ -1,31 +1,38 @@
 pipeline {
-    agent none
-    stages {
-        stage("build-backend") {
-            agent {
-                docker {
-                    image 'rust:latest'
-                    reuseNode true
-                }
-            }
-            steps {
-                echo 'Building api...'
-                sh 'ls';
-                sh 'rustc --version';
-            }
-        }
-        stage("build-frontend") {
-            agent {
-                docker {
-                    image 'node:20.9.0-alpine3.18'
-                    reuseNode true
-                }
-            }
-            steps {
-                echo 'Building Front-end...'
-                sh 'ls';
-                sh 'node --version';
-            }
-        }
-    } 
+  agent {
+    docker {
+      image 'node:20.9.0-alpine3.18'
+      args '-p 3000:3000'
+    }
+  }
+  environment {
+    NODE_ENV = 'production'
+  }
+  stages {
+    stage('Install') {
+      steps {
+        echo 'Installing..'
+        sh 'yarn'
+        echo 'Install Success'
+      }
+    }
+    stage('Build') {
+      steps {
+        echo 'Building..'
+        sh 'yarn build'
+        echo 'Build Success'
+      }
+    }
+    stage('Deploy') {
+      when {
+        branch 'master'
+      }
+      steps {
+        echo 'Deploying..'
+        input message: 'Finished using the web site? (Click "Proceed" to continue)'
+        sh './jenkins/deploy.sh'
+        echo 'Deploy Success'
+      }
+    }
+  }
 }
