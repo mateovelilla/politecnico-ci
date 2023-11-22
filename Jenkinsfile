@@ -6,7 +6,10 @@ pipeline {
   }
   stages {
     stage('Build front-end') {
-      sh 'npm install'
+      steps {
+        sh 'ls'
+        sh 'npm install'
+      }
     }
   }
 }
