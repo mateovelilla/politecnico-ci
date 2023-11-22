@@ -5,6 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'rust:latest'
+                    reuseNode true
                 }
             }
             steps {
@@ -17,6 +18,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:20.9.0-alpine3.18'
+                    reuseNode true
                 }
             }
             steps {
