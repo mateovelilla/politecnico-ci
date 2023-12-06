@@ -4,7 +4,6 @@ node_js:
 cache:
   npm: false
 before_install:
-  - npm i -g npm@version-number
   - cd app
 install:
   - npm install
