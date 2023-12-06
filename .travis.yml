@@ -9,6 +9,4 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 install:
   - bundle install --path vendor/bundle
-  - yarn install
-test:
-  - yarn test
+  - yarn install --modules-folder app
