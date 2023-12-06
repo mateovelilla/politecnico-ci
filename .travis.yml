@@ -8,3 +8,6 @@ before_install:
   - echo "Script before to install";
 install:
   - npm install --prefix app
+test:
+  - cd app
+  - npm run test
