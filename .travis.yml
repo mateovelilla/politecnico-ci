@@ -2,12 +2,12 @@ language: node_js
 node_js:
   - 16
 cache:
-  directories:
-  - node_modules
+  npm: false
 before_install:
-  - echo "Script before to install";
-install:
-  - npm install --prefix app
-test:
+  - npm i -g npm@version-number
   - cd app
-  - npm run test
+install:
+  - npm install
+script:
+    - cd app
+    - npm run build
